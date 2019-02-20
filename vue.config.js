@@ -1,12 +1,33 @@
+const path = require('path');
+const SkeletonWebpackPlugin = require('vue-skeleton-webpack-plugin');
+
 module.exports = {
-    // ...sass全局变量
+    configureWebpack: (config)=>{
+        config.plugins.push(new SkeletonWebpackPlugin({
+        webpackConfig: {
+            entry: {
+            app: path.join(__dirname, './src/skeleton.js'),
+            },
+        },
+        minimize: true,
+        quiet: true,
+        })) 
+    },
+    // css相关配置
     css: {
-      loaderOptions: {
-        sass: {
-          data: `
-            @import "@/assets/styles/_variable.scss";
-          `
+        // 是否使用css分离插件 ExtractTextPlugin
+        extract: true,
+        // 开启 CSS source maps?
+        sourceMap: false,
+        // 启用 CSS modules for all css / pre-processor files.
+        modules: false,
+        // ...sass全局变量
+        loaderOptions: {
+            sass: {
+            data: `
+                @import "@/assets/styles/_variable.scss";
+            `
+            }
         }
-      }
-    }
-  }
+    },
+};

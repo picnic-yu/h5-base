@@ -3,6 +3,7 @@
     <h1>{{ msg }}</h1>
     
     <h3>hello word</h3>
+    <p>{{ $t('hello') }}</p>
   </div>
 </template>
 
